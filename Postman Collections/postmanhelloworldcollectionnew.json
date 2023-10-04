@@ -1,0 +1,87 @@
+{
+	"info": {
+		"_postman_id": "c45decec-ab4f-4af4-a583-37d15b58cb59",
+		"name": "Hello World",
+		"description": "A simple collection with one request that has tests to validate response. You can use this collection as a entry-levle example to demonstrate Postman's debugging capabilities.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Hello World",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"const jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.be.success;",
+							"});",
+							"",
+							"pm.test(\"Ensure `data` property exists and contains `message`\", function () {",
+							"    pm.response.to.have.jsonSchema({",
+							"        properties: {",
+							"            data: {",
+							"                type: \"object\",",
+							"                properties: {",
+							"                    message: {",
+							"                        type: \"string\"",
+							"                    }",
+							"                }",
+							"            }",
+							"        }",
+							"    });",
+							"});",
+							"",
+							"pm.test(\"Ensure valid message\", function () {",
+							"    pm.expect(jsonData.data.message).to.eql('Hello, World!');",
+							"})"
+						]
+					}
+				}
+			],
+			"id": "75273215-dee2-440f-87a1-8bf963547eb3",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"message\": \"Hello, World!\"\n}"
+				},
+				"url": "https://postman-echo.com/post"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "8467cb79-27d6-4284-a40b-859b8f77d77e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "6c074e64-428a-408b-b10d-e90a3c3a53fd",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
